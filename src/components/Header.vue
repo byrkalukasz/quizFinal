@@ -18,7 +18,7 @@ export default {
 <style scooped>
 .header
 {
-    width: 1000%;
+    width: 100%;
     height: 50px;
     position: absolute;
     left: 0%;

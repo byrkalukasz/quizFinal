@@ -6,7 +6,7 @@
 
 <script>
 import Login from "../components/Login.vue"
-import { useLoadUses } from "../firebase"
+
 
 export default{
   name: 'LoginForm',
@@ -14,9 +14,7 @@ export default{
     Login
   },
   setup() {
-    const users = useLoadUses()
-    console.warn(users)
-    return users
+
   }
 }
 </script>
