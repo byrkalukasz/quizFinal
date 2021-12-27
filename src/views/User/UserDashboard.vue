@@ -1,6 +1,5 @@
 <template>
-    <div class="userdashboard">
-        
+    <div class="userdashboard">  
         <Header></Header>
         <QuizList></QuizList>
         
@@ -9,10 +8,10 @@
 
 <script>
 import QuizList from "../../components/QuizList.vue"
-import Header from "../../components/Header.vue"
+import Header from "../../components/Nav.vue"
 
 export default {
-    name: 'AdminDashboard',
+    name: 'UserDashboard',
     components: {
         QuizList,
         Header

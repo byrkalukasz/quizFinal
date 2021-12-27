@@ -9,7 +9,7 @@
 
 <script>
 import QuizList from "../../components/Quiz.vue"
-import Header from "../../components/Header.vue"
+import Header from "../../components/Nav.vue"
 
 export default {
     name: 'AdminDashboard',

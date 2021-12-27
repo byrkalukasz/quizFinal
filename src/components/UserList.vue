@@ -57,7 +57,6 @@ export default {
     top: 50%;
     transform: translate(-50%, -50%);
     display: grid;
-
 }
 table,th,td{
     border-collapse: collapse;
