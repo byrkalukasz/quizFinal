@@ -1,12 +1,10 @@
 <template>
-  <div id="login">
-      
-      <form class="logowanie">
+  <div id="register">   
+      <form class="rejestracja">
           <input type="text">
           <input type="text">
-          <button><router-link to="/Context"> Zaloguj</router-link></button>
-          <button><router-link to="/Register"> Zarejestruj</router-link></button>
-          <button>Zapomniałem hasła</button>
+          <button>Zarejestruj</button>
+            <button><router-link to="/"> Masz już konto? Zaloguj</router-link></button>
       </form>
   </div>
 </template>
@@ -14,7 +12,7 @@
 <script>
 
 export default{
-    name: 'Login',
+    name: 'Register',
     components: {
   }
 }
@@ -22,7 +20,7 @@ export default{
 
 
 <style scooped>
-.logowanie
+.rejestracja
 {
     position: absolute;
     left: 50%;

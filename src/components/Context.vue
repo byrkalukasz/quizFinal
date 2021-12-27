@@ -1,12 +1,8 @@
 <template>
   <div id="login">
-      
       <form class="logowanie">
-          <input type="text">
-          <input type="text">
-          <button><router-link to="/Context"> Zaloguj</router-link></button>
-          <button><router-link to="/Register"> Zarejestruj</router-link></button>
-          <button>Zapomniałem hasła</button>
+          <button><router-link to="/AdminDashboard"> Administrator</router-link></button>
+          <button><router-link to="/UserDashboard">User</router-link></button>
       </form>
   </div>
 </template>

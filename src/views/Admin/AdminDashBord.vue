@@ -2,19 +2,19 @@
     <div class="admindashboard">
         
         <Header></Header>
-        <UserList></UserList>
+        <QuizList></QuizList>
         
     </div>
 </template>
 
 <script>
-import UserList from "../../components/UserList.vue"
+import QuizList from "../../components/Quiz.vue"
 import Header from "../../components/Header.vue"
 
 export default {
     name: 'AdminDashboard',
     components: {
-        UserList,
+        QuizList,
         Header
     }
 }
