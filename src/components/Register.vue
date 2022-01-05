@@ -15,7 +15,9 @@
 
 <script>
 import { ref } from 'vue'
+import { db } from '../firebase'
 import { useRouter } from 'vue-router'
+import { addDoc, collection } from 'firebase/firestore'
 import useSingup from '../composables/useSingup'
 
 export default{
@@ -33,6 +35,12 @@ export default{
           await singup(email.value, password.value)
 
           if(!error.value) {
+              const colRef = collection(db, 'Userd')
+              await addDoc(colRef,{
+                  Login: email.value,
+                  Role: 'User'
+              }
+              )
               router.push('/')
           }
       }

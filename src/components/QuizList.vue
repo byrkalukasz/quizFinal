@@ -1,5 +1,5 @@
 <template>
-    <div class="quizlist">
+    <div class="quizlist" >
         <table>
             <tr>
                 <th>Id</th>

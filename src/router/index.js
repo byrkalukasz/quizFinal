@@ -6,7 +6,7 @@ import AdminDashboard from '../views/Admin/AdminDashBord.vue'
 import UserDashboard from '../views/User/UserDashboard.vue'
 import PageNotFount from '../views/404.vue'
 
-UserDashboard
+
 const routes = [
   {
     path: '/',
