@@ -5,7 +5,7 @@
                 <ul>
                     <li v-for="q in questionList[question].odp" :key="q.name"><input type="radio" name="answer" :value="q.name">{{ q.name }} </li>
                 </ul>
-                            <button @click="increment" v-if="answer < questionList.length">Następne pytanie</button>
+            <button @click="increment" v-if="answer < questionList.length">Następne pytanie</button>
             <button @click="summary" v-if="answer == questionList.length">Podsumowanie</button>
             </div>
         <div class="summary">
@@ -70,9 +70,9 @@ export default {
                 this.ans = ele[i].value
                                                 }
                 if(this.ans == this.questionList[this.question].correct)
-                this.summaryList.push({Odpowiedz:"Poprawna",TwojaOdpowiedz:ans, OdpowiedzQuizu:this.questionList[this.question].correct})
+                this.summaryList.push({Odpowiedz:"Poprawna",TwojaOdpowiedz:this.ans, OdpowiedzQuizu:this.questionList[this.question].correct})
                 else
-                this.summaryList.push({Odpowiedz:"Błędna",TwojaOdpowiedz:ans, OdpowiedzQuizu:this.questionList[this.question].correct})
+                this.summaryList.push({Odpowiedz:"Błędna",TwojaOdpowiedz:this.ans, OdpowiedzQuizu:this.questionList[this.question].correct})
                 console.log(this.summaryList)
                 question.style.display = 'none'
                 summary.style.display = 'show'

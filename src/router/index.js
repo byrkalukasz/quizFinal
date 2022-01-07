@@ -5,6 +5,8 @@ import Context from '../views/ContextForm.vue'
 import AdminDashboard from '../views/Admin/AdminDashBord.vue'
 import UserDashboard from '../views/User/UserDashboard.vue'
 import PageNotFount from '../views/404.vue'
+import AdminUserList from '../views/Admin/AdminUserlist'
+import AdminQuizCreate from '../views/Admin/AdminQuizCreate'
 
 
 const routes = [
@@ -27,6 +29,16 @@ const routes = [
     path: '/AdminDashboard',
     name: 'AdminDashboard',
     component: AdminDashboard
+  },
+  {
+    path: '/AdminUserList',
+    name: 'AdminUserList',
+    component: AdminUserList
+  },
+  {
+    path: '/AdminQuizCreate',
+    name: 'AdminQuizCreate',
+    component: AdminQuizCreate
   },
   {
     path: '/Register',

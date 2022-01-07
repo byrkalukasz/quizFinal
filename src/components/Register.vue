@@ -4,7 +4,7 @@
           <h3>Rejestracja</h3>
           <label for="email">Email</label>
           <input type="email" name="email" v-model="email" required>
-          <label for="email">Hasło</label>
+          <label for="password">Hasło</label>
           <input type="password" name="password" v-model="password" required>
           <button>Zarejestruj</button>
           <div v-if="error">{{ error }}</div>

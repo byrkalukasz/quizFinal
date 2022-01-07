@@ -1,17 +1,17 @@
 <template>
-<div class="userlist">
-    <table>
-        <tr>
-            <th>Email</th>
-            <th>Admin</th>
-        </tr>
-        <tr v-for="user in userList" :key="user.Login">
-            <td> {{ user.Login }} </td>
-            <td> {{ user.Role }} </td>
-            <td><button>Edycja</button></td>
-        </tr>
-    </table>
-</div>    
+    <div class="quizlist" >
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Nazwa</th>
+            </tr>
+            <tr v-for="quiz in quizList" :key="quiz.Nazwa">
+                <td>{{ quiz.id }}</td>
+                <td>{{ quiz.Name }}</td>
+                <td><button>Edytuj Quiz</button></td>
+            </tr>
+        </table>
+    </div>
 </template>
 
 <script>
@@ -20,10 +20,13 @@ import { db } from '../firebase'
 import { collection, getDocs} from 'firebase/firestore'
 
 export default {
-    name: 'UserList',
+    name: 'QuizList',
+    components: {
+        
+    },
     setup() {
-        const userList  = ref([])
-        const colRef = collection(db, 'Userd')
+        const quizList  = ref([])
+        const colRef = collection(db, 'Quiz')
 
         getDocs(colRef)
             .then(snapshot => {
@@ -32,27 +35,23 @@ export default {
                     docs.push({ ...doc.data(), id: doc.id})
                 })
                 console.log(docs)
-                userList.value = docs
-                console.log(userList)
+                quizList.value = docs
             })
 
-        return { userList }
+        return { quizList }
     },
-    mounted()
-    {
-
-    }
 }
 </script>
 
 <style scoped>
-.userlist
+.quizlist
 {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     display: grid;
+    background: white;
 }
 table,th,td{
     border-collapse: collapse;

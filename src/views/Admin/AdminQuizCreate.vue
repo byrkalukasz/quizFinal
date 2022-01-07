@@ -1,18 +1,18 @@
 <template>
     <div class="admindashboard">  
         <Header></Header>
-        <QuizList></QuizList>
+        <QuizAdd></QuizAdd>
     </div>
 </template>
 
 <script>
-import QuizList from "../../components/Quiz.vue"
+import QuizAdd from "../../components/AddQuiz.vue"
 import Header from "../../components/AdminNav.vue"
 
 export default {
-    name: 'AdminDashboard',
+    name: 'AdminQuizCreate',
     components: {
-        QuizList,
+        QuizAdd,
         Header
     }
 }

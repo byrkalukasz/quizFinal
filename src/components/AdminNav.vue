@@ -1,7 +1,9 @@
 <template>
     <div class='header'>
         Logo
-        <button>Strona główna</button>
+        <button @click="quiz">Quizy</button>
+        <button @click="user"> Użytkownicy </button>
+        <button @click="Context"> Kontekst </button>
         <button @click="logout"> W </button>
     </div>
 </template>
@@ -16,12 +18,21 @@ export default {
     name: 'Header',
     setup() {
         const router = useRouter()
+        const user = () => {
+            router.push('/AdminUserList')
+        }
+        const Context = () => {
+            router.push('/Context')
+        }
+        const quiz = () => {
+            router.push('/AdminQuizCreate')
+        }
         const logout = () => {
             signOut(auth)
             router.push('/')
         }
         
-        return { logout }
+        return { logout, Context, user, quiz }
     },
     components: {
 

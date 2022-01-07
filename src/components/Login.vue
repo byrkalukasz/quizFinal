@@ -1,11 +1,10 @@
 <template>
   <div id="login">
-      
       <form class="logowanie" @submit.prevent="zaloguj">
           <h3>Zaloguj</h3>
           <label for="email">Email</label>
           <input type="email" name="email" v-model="email" required>
-          <label for="email">Hasło</label>
+          <label for="password">Hasło</label>
           <input type="password" name="password" v-model="password" required>
           <button> Zaloguj</button>
           <button><router-link to="/Register"> Zarejestruj</router-link></button>
@@ -25,10 +24,8 @@ export default{
     name: 'Login',
     setup() {
         const { user } = getUser()
-
         const email = ref('')
         const password = ref('')
-
         const { login, error } = useLogin()
         const router = useRouter()
 
