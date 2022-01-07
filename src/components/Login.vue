@@ -20,6 +20,7 @@ import { useRouter } from 'vue-router'
 import useLogin from '../composables/useLogin'
 import getUser from '../composables/getUser'
 
+
 export default{
     name: 'Login',
     setup() {
@@ -31,7 +32,6 @@ export default{
 
         const zaloguj = async () => {
             await login(email.value, password.value)
-            console.log(user.value.email)
             if(!error.value){
                 if(user.value.email == 'lukasz.byrka1@gmail.com')
                 {
