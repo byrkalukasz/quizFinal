@@ -8,7 +8,7 @@
             <tr v-for="quiz in quizList" :key="quiz.Nazwa">
                 <td>{{ quiz.id }}</td>
                 <td>{{ quiz.Name }}</td>
-                <td><button>Wykonaj Quiz</button></td>
+                <td><router-link :to="{ name: 'Quiz', params: { ID: quiz.id }}">Wykonaj Quiz</router-link></td>
             </tr>
         </table>
     </div>
@@ -21,9 +21,6 @@ import { collection, getDocs} from 'firebase/firestore'
 
 export default {
     name: 'QuizList',
-    components: {
-        
-    },
     setup() {
         const quizList  = ref([])
         const colRef = collection(db, 'Quiz')

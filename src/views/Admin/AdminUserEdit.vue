@@ -1,18 +1,18 @@
 <template>
     <div class="admindashboard">  
         <Header></Header>
-        <UserList></UserList>
+        <UserEdit></UserEdit>
     </div>
 </template>
 
 <script>
-import UserList from "../../components/UserList.vue"
+import UserEdit from "../../components/UserEdit.vue"
 import Header from "../../components/AdminNav.vue"
 
 export default {
-    name: 'AdminDashboard',
+    name: 'AdminUserEdit',
     components: {
-        UserList,
+        UserEdit,
         Header
     }
 }

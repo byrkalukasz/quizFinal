@@ -1,5 +1,5 @@
 <template>
-    <div class="admindashboard">  
+    <div class="UserQuiz">  
         <Header></Header>
         <QuizList></QuizList>
     </div>
@@ -7,10 +7,10 @@
 
 <script>
 import QuizList from "../../components/Quiz.vue"
-import Header from "../../components/AdminNav.vue"
+import Header from "../../components/Nav.vue"
 
 export default {
-    name: 'AdminQuizEdit',
+    name: 'UserQuiz',
     components: {
         QuizList,
         Header
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style scoped>
-.admindashboard
+.UserQuiz
 {
     width: 100%;
     height: 100;

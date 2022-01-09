@@ -1,6 +1,6 @@
 <template>
     <div class="adding">
-        <form class="quizcreate">
+        <form class="quizcreate" @submit.prevent="handleSubmit">
             <label>Podaj nazwę pytania</label>
             <input type="text" v-model="Name">
             <table>
@@ -20,6 +20,8 @@
 
 <script>
 import { ref } from 'vue'
+import { db } from '../firebase'
+import { addDoc, collection } from 'firebase/firestore'
 
 export default {
     
@@ -57,7 +59,14 @@ export default {
                 console.log(this.formFirlds[i])
                 this.answerList.push({name:this.formFirlds[i]})
             }
-            this.questionList.push({id: this.questionNumber, Tresc: this.Name, correct: this.Correct, odp: this.answerList})
+            let result = this.answerList
+            console.log(result)
+            let test = result
+            console.log(test)
+            console.log(this.Name)
+            let spr = ({id: this.questionNumber, Tresc: this.Name, correct: this.Correct, odp: result})
+            this.questionList.push((spr))
+            this.questionNumber++
             this.Name = ''
             this.Correct = ''
             for(var j = 1; j <= this.answerNumber; j++)
@@ -68,10 +77,16 @@ export default {
         },
         addQuiz()
         {
+            const colRef = collection(db, 'Quiz_questions')
+            addDoc(colRef,{
+                  Questions: this.questionList
+              }
+              )
                 //TO DO: Dodanie nazwy do Quizu
                 //TO DO: odczytanie uidu Quizu
                 //TO DO: Zapisanie do tabeli z pytaniami
-        }
+        },
+        
         //Dodac do tabeli quiz
 
         //Pobrac id quizu

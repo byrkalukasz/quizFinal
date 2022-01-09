@@ -1,9 +1,12 @@
 <template>
+<Header></Header>
     <div class="quiz">
+        <div >
             <div class="question" v-if="questionList.length">
                 {{ questionList[question].id }}. {{ questionList[question].Tresc }}
                 <ul>
                     <li v-for="q in questionList[question].odp" :key="q.name"><input type="radio" name="answer" :value="q.name">{{ q.name }} </li>
+                    <li>{{ ID }}</li>
                 </ul>
             <button @click="increment" v-if="answer < questionList.length">Następne pytanie</button>
             <button @click="summary" v-if="answer == questionList.length">Podsumowanie</button>
@@ -12,6 +15,7 @@
             <ul>
                 <li v-for="s in summaryList" :key="s.id"></li>
             </ul>
+            </div>
         </div>
     </div>
 </template>
@@ -19,14 +23,25 @@
 <script>
 import { ref } from 'vue'
 import { db } from '../firebase'
-import { collection, getDocs} from 'firebase/firestore'
+import { collection, getDocs, query} from 'firebase/firestore'
+import Header from '../components/Nav.vue'
 
 export default {
+    props: ['ID'],
+     components: {
+        Header
+    },
     name: 'quiz',
+    data() {
+        let summaryList = ref([])
+        const q = ["Quiz_questions", "==", this.ID]
+        return {question: 0, answer: 1, summaryList, q}
+    },
     setup() {
         const questionList  = ref([])
         const answerList = ref([])
-        const colRef = collection(db, 'Quiz_questions')
+        let colRef = collection(db, 'Quiz_questions')
+        colRef = query(colRef)
 
         getDocs(colRef)
             .then(snapshot => {
@@ -34,16 +49,15 @@ export default {
                 snapshot.docs.forEach(doc => {
                     docs.push({ ...doc.data(), id: doc.id})
                 })
-                questionList.value = JSON.parse(docs[0].Questions)
+                questionList.value = docs[0].Questions    
             })
-
         return { questionList,answerList }
     },
-    data() {
-        let summaryList = ref([])
-        return {question: 0, answer: 1, summaryList}
-    },
     methods: {
+        startQuiz()
+        {
+            console.log(this.q)
+        },
         increment() {
             let ele = document.getElementsByName('answer');
             let ans;
@@ -56,9 +70,9 @@ export default {
                 else
                 this.summaryList.push({Odpowiedz:"Błędna",TwojaOdpowiedz:ans, OdpowiedzQuizu:this.questionList[this.question].correct})
                 
-                console.log(this.summaryList)
             this.question++
             this.answer++
+            
         },
         summary()
         {

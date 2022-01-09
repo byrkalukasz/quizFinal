@@ -7,6 +7,11 @@ import UserDashboard from '../views/User/UserDashboard.vue'
 import PageNotFount from '../views/404.vue'
 import AdminUserList from '../views/Admin/AdminUserlist'
 import AdminQuizCreate from '../views/Admin/AdminQuizCreate'
+import Quiz from '../components/Quiz'
+import QuizEdit from '../views/Admin/AdminQiuzEdit'
+import User from '../views/Admin/AdminUserEdit'
+
+
 
 
 const routes = [
@@ -18,27 +23,51 @@ const routes = [
   {
     path: '/Context',
     name: 'Context',
-    component: Context
+    component: Context,
   },
   {
     path: '/UserDashboard',
     name: 'UserDashboard',
-    component: UserDashboard
+    component: UserDashboard,
+
   },
   {
     path: '/AdminDashboard',
     name: 'AdminDashboard',
-    component: AdminDashboard
+    component: AdminDashboard,
+
   },
   {
     path: '/AdminUserList',
     name: 'AdminUserList',
-    component: AdminUserList
+    component: AdminUserList,
+
   },
   {
     path: '/AdminQuizCreate',
     name: 'AdminQuizCreate',
-    component: AdminQuizCreate
+    component: AdminQuizCreate,
+
+  },
+  {
+    path: '/Quiz/:ID',
+    name: 'Quiz',
+    component: Quiz,
+    props: true
+  },
+  {
+    path: '/QuizEdit/:quizID',
+    name: 'QuizEdit',
+    component: QuizEdit,
+    props: true,
+ 
+  },
+  {
+    path: '/UserEdit/:email',
+    name: 'User',
+    component: User,
+    props: true,
+
   },
   {
     path: '/Register',
