@@ -1,12 +1,10 @@
 <template>
 <Header></Header>
     <div class="quiz">
-        <div >
             <div class="question" v-if="questionList.length">
-                {{ questionList[question].id }}. {{ questionList[question].Tresc }}
+                {{ questionList[question].id}}. {{ questionList[question].Tresc }}
                 <ul>
                     <li v-for="q in questionList[question].odp" :key="q.name"><input type="radio" name="answer" :value="q.name">{{ q.name }} </li>
-                    <li>{{ ID }}</li>
                 </ul>
             <button @click="increment" v-if="answer < questionList.length">Następne pytanie</button>
             <button @click="summary" v-if="answer == questionList.length">Podsumowanie</button>
@@ -16,14 +14,13 @@
                 <li v-for="s in summaryList" :key="s.id"></li>
             </ul>
             </div>
-        </div>
     </div>
 </template>
 
 <script>
 import { ref } from 'vue'
 import { db } from '../firebase'
-import { collection, getDocs, query} from 'firebase/firestore'
+import { collection, getDocs} from 'firebase/firestore'
 import Header from '../components/Nav.vue'
 
 export default {
@@ -33,15 +30,14 @@ export default {
     },
     name: 'quiz',
     data() {
+        const answerList = ref([])
         let summaryList = ref([])
         const q = ["Quiz_questions", "==", this.ID]
-        return {question: 0, answer: 1, summaryList, q}
+        return {question: 0, answer: 1, summaryList, q, answerList }
     },
     setup() {
-        const questionList  = ref([])
-        const answerList = ref([])
         let colRef = collection(db, 'Quiz_questions')
-        colRef = query(colRef)
+        const questionList  = ref([])
 
         getDocs(colRef)
             .then(snapshot => {
@@ -49,15 +45,17 @@ export default {
                 snapshot.docs.forEach(doc => {
                     docs.push({ ...doc.data(), id: doc.id})
                 })
-                questionList.value = docs[0].Questions    
+                console.log(docs)
+                questionList.value = docs[0].Questions
             })
-        return { questionList,answerList }
+
+            return { questionList}
+    },
+    mounted() {
+
+        
     },
     methods: {
-        startQuiz()
-        {
-            console.log(this.q)
-        },
         increment() {
             let ele = document.getElementsByName('answer');
             let ans;
@@ -103,14 +101,6 @@ export default {
     top: 50%;
     transform: translate(-50%, -50%);
     display: grid;
-}
-.question
-{
-    display: show;
-}
-.summary
-{
-    display: none;
 }
 </style>
 
