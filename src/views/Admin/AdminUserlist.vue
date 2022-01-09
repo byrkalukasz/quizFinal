@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import QuizList from "../../components/Quiz.vue"
+import QuizList from "../../components/UserList.vue"
 import Header from "../../components/AdminNav.vue"
 
 export default {

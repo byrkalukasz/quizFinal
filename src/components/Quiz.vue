@@ -45,14 +45,23 @@ export default {
                 snapshot.docs.forEach(doc => {
                     docs.push({ ...doc.data(), id: doc.id})
                 })
-                console.log(docs)
-                questionList.value = docs[0].Questions
+                console.log(docs[0])
+                questionList.value = docs
             })
 
-            return { questionList}
+            return { questionList }
     },
     mounted() {
-
+            for(var i = 0; i<this.questionList.length; i++)
+            {
+                console.log(this.ID)
+                if(this.questionList[i].Quiz_id !== this.ID)
+                {
+                    console.log(this.ID)
+                    console.log("hehe")
+                }
+                console.log("hehe")
+            }
         
     },
     methods: {
