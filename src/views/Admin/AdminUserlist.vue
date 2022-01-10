@@ -11,6 +11,7 @@ import Header from "../../components/AdminNav.vue"
 
 export default {
     name: 'AdminUserList',
+    props: [ 'email' ],
     components: {
         QuizList,
         Header

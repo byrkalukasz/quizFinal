@@ -1,5 +1,4 @@
 <template>
-<Header></Header>
     <div class="quiz">
             <div class="question" v-if="questionList.length">
                 {{ questionList[question].id}}. {{ questionList[question].Tresc }}
@@ -21,13 +20,10 @@
 import { ref } from 'vue'
 import { db } from '../firebase'
 import { collection, getDocs} from 'firebase/firestore'
-import Header from '../components/Nav.vue'
+
 
 export default {
     props: ['ID'],
-     components: {
-        Header
-    },
     name: 'quiz',
     data() {
         const answerList = ref([])
@@ -46,13 +42,13 @@ export default {
                     docs.push({ ...doc.data(), id: doc.id})
                 })
                 console.log(docs[0])
-                questionList.value = docs
+                questionList.value = docs[0].Questions
             })
 
             return { questionList }
     },
     mounted() {
-            for(var i = 0; i<this.questionList.length; i++)
+            for(var i = 0; i < this.questionList.length; i++)
             {
                 console.log(this.ID)
                 if(this.questionList[i].Quiz_id !== this.ID)

@@ -7,7 +7,7 @@ import UserDashboard from '../views/User/UserDashboard.vue'
 import PageNotFount from '../views/404.vue'
 import AdminUserList from '../views/Admin/AdminUserlist'
 import AdminQuizCreate from '../views/Admin/AdminQuizCreate'
-import Quiz from '../components/Quiz'
+import Quiz from '../views/User/UserQuiz'
 import QuizEdit from '../views/Admin/AdminQiuzEdit'
 import User from '../views/Admin/AdminUserEdit'
 

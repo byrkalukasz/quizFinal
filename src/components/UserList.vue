@@ -8,7 +8,7 @@
         <tr v-for="user in userList" :key="user.Login">
             <td> {{ user.Login }} </td>
             <td> {{ user.Role }} </td>
-            <td><router-link :to="{ name: 'User', params: { email: user.Login}}"><button>Edycja</button></router-link></td>
+            <td><router-link :to="{ name: 'User', params: { email: user.Login }}"><button>Edycja</button></router-link></td>
         </tr>
     </table>
 </div>    
