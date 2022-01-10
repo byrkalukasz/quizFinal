@@ -8,7 +8,6 @@
           <input type="password" name="password" v-model="password" required>
           <button> Zaloguj</button>
           <button><router-link to="/Register"> Zarejestruj</router-link></button>
-          <button>Zapomniałem hasła</button>
           <div v-if="error">{{ error }}</div>
       </form>
   </div>
@@ -17,6 +16,8 @@
 <script>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { db } from '../firebase'
+import { collection, getDocs, where, query} from 'firebase/firestore'
 import useLogin from '../composables/useLogin'
 import getUser from '../composables/getUser'
 
@@ -29,21 +30,33 @@ export default{
         const password = ref('')
         const { login, error } = useLogin()
         const router = useRouter()
+        let userList  = ref([])
 
         const zaloguj = async () => {
             await login(email.value, password.value)
             if(!error.value){
-                if(user.value.email == 'lukasz.byrka1@gmail.com')
+                let colRef = collection(db, 'Userd')
+                colRef = query(colRef, where("Login", '==', email.value))
+                    getDocs(colRef)
+                    .then(snapshot => {
+                let docs = []
+                snapshot.docs.forEach(doc => {
+                    docs.push({ ...doc.data(), id: doc.id})
+                })
+                userList.value = docs[0].Role
+                console.log(userList.value)
+                if(userList.value == "Admin")
                 {
                 router.push('/Context')
-                }
-                else
+                }else
                 {
-                router.push('/UserDashboard')
+                    router.push('/UserDashboard')
                 }
+
+            })
+                
             }
         }
-
         return { email, password, zaloguj, error, user}
     },
     components: {
